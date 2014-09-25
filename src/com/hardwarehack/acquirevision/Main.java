@@ -18,13 +18,15 @@ public class Main {
 
     private void run() {
         try {
-            BufferedImage image = ImageIO.read(new File("src/sample1transform.jpg"));
+            BufferedImage image = ImageIO.read(new File("src/sample2transform.jpg"));
             BoardReader boardReader = new BoardReader(
                 image
             );
             boardReader.calculateGrid();
             boardReader.drawGrid();
             boardReader.fillBox(3, 3);
+            boardReader.getStatusOf(2, 1);
+            boardReader.getStatusOf(5,5);
             displayImage(boardReader.getImage());
 
         } catch (IOException e) {

@@ -1,10 +1,10 @@
 package com.hardwarehack.acquirevision;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoardReader {
 
@@ -89,6 +89,41 @@ public class BoardReader {
         g2d.fillRect(box.x1, box.y1, box.width, box.height);
     }
 
+    public void getStatusOf(int x, int y) {
+        Graphics2D g2d = image.createGraphics();
+        g2d.setColor(Color.red);
+
+        Box box = gridModel.getBox(x, y);
+        List<Point> randomPoints = Box.getRandomPointsIn(box);
+        List<Color> colors  = new ArrayList<Color>();
+        for(Point point: randomPoints) {
+            int xPixel = (int)point.getX();
+            int yPixel = (int)point.getY();
+            colors.add(new Color(image.getRGB(xPixel, yPixel), true));
+            g2d.drawLine(xPixel, yPixel, xPixel, yPixel);
+        }
+
+        Color averageColor = getAverageColor(colors);
+        System.out.println(colors.size());
+        System.out.println(averageColor);
+    }
+
+    private Color getAverageColor(List<Color> colors) {
+        int redBucket = 0;
+        int greenBucket = 0;
+        int blueBucket = 0;
+        for(Color color: colors) {
+            redBucket += color.getRed();
+            greenBucket += color.getGreen();
+            blueBucket += color.getBlue();
+        }
+
+        return new Color(redBucket/colors.size(),
+            greenBucket/colors.size(),
+            blueBucket/colors.size());
+    }
+
+
     private ArrayList<Double> calculateVerticals() {
         ArrayList<Double> result = new ArrayList();
         double averageGridDifference = ( bottomMargin() - topMargin())/9;
@@ -127,6 +162,7 @@ public class BoardReader {
     private Double bottomWidth() {
         return q4.getX() - q3.getX();
     }
+
 
 
 }
