@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class BoardReader {
 
     public static final double VERTICAL_SCALING_RATIO = 1.12;
+    public static final int COLUMNS = 12;
+    public static final int ROWS = 9;
 
     private final BufferedImage image;
     private final Point2D q1;
@@ -16,12 +18,22 @@ public class BoardReader {
     private final Point2D q3;
     private final Point2D q4;
 
+    private GridModel gridModel;
+
     public BoardReader(BufferedImage image, Point2D quadrant1, Point2D quadrant2, Point2D quadrant3, Point2D quadrant4){
         this.image = image;
         this.q1 = quadrant1;
         this.q2 = quadrant2;
         this.q3 = quadrant3;
         this.q4 = quadrant4;
+    }
+
+    public BoardReader(BufferedImage image) {
+        this.image = image;
+        this.q1 = new Point2D.Double(image.getWidth(), 0);
+        this.q2 = new Point2D.Double(0, 0);
+        this.q3 = new Point2D.Double(0, image.getHeight());
+        this.q4 = new Point2D.Double(image.getWidth(), image.getHeight());
     }
 
     public BufferedImage getImage() {
@@ -47,6 +59,26 @@ public class BoardReader {
             g2d.drawLine((int)(topHorizontals.get(i)+q2.getX()), topMargin().intValue(), (int)(bottomHorizontals.get(i)+q3.getX()), bottomMargin().intValue());
         }
         g2d.dispose();
+    }
+
+    public void calculateGrid() {
+        gridModel = new GridModel(ROWS, COLUMNS, image.getWidth(), image.getHeight());
+    }
+
+    public void drawGrid() {
+        Graphics2D g2d = image.createGraphics();
+        g2d.setColor(Color.yellow);
+        for(int i=0; i < COLUMNS; i++) {
+            Box box = gridModel.getBox(i, 0);
+            int xPosition = (int)box.x1;
+            g2d.drawLine(xPosition, 0, xPosition, image.getHeight());
+        }
+
+        for(int i=0; i < ROWS; i++) {
+            Box box = gridModel.getBox(0, i);
+            int yPosition = (int)box.y1;
+            g2d.drawLine(0, yPosition, image.getWidth(), yPosition);
+        }
     }
 
     private ArrayList<Double> calculateVerticals() {

@@ -19,16 +19,12 @@ public class Main {
 
     private void run() {
         try {
-            BufferedImage image = ImageIO.read(new File("src/sample1.jpg"));
+            BufferedImage image = ImageIO.read(new File("src/sample1transform.jpg"));
             BoardReader boardReader = new BoardReader(
-                image,
-                new Point2D.Double(837, 364),
-                new Point2D.Double(220, 362),
-                new Point2D.Double(18, 690),
-                new Point2D.Double(1046, 691)
+                image
             );
-            boardReader.diagnosticDrawHorizontalLines();
-            boardReader.diagnosticDrawVerticalLines();
+            boardReader.calculateGrid();
+            boardReader.drawGrid();
             displayImage(boardReader.getImage());
 
         } catch (IOException e) {
