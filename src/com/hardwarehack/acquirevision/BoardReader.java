@@ -107,8 +107,9 @@ public class BoardReader {
         int brightness = getBrightness(averageColor);
         System.out.println(averageColor);
         System.out.println(brightness);
-        String occupiedStatus = brightness > 115 ? "occupied" : "empty";
+        String occupiedStatus = brightness > 120 ? "occupied" : "empty";
         System.out.println("The block at " + x + ", " + y + " is " + occupiedStatus);
+        System.out.println();
 
         return brightness;
     }

@@ -28,6 +28,7 @@ public class Main {
             boardReader.getStatusOf(2, 1);
             boardReader.getStatusOf(5,5);
             boardReader.getStatusOf(0,0);
+            boardReader.getStatusOf(10,5);
             displayImage(boardReader.getImage());
 
         } catch (IOException e) {
