@@ -13,15 +13,13 @@ import java.io.IOException;
 
 public class Main {
 
-    private BufferedImage image;
-
     public static void main(String[] args) {
         new Main().run();
     }
 
     private void run() {
         try {
-            image = ImageIO.read(new File("src/sample1.jpg"));
+            BufferedImage image = ImageIO.read(new File("src/sample1.jpg"));
             BoardReader boardReader = new BoardReader(
                 image,
                 new Point2D.Double(837, 364),
@@ -32,7 +30,6 @@ public class Main {
             boardReader.diagnosticDrawHorizontalLines();
             boardReader.diagnosticDrawVerticalLines();
             displayImage(boardReader.getImage());
-
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.hardwarehack.acquirevision;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class BoardReader {
         ArrayList<Double> topHorizontals = calculateHorizontals(topWidth());
         ArrayList<Double> bottomHorizontals = calculateHorizontals(bottomWidth());
         for(int i = 0; i < 12; i++) {
-            g2d.drawLine((int) (topHorizontals.get(i).intValue()+q2.getX()), topMargin().intValue(), (int) (bottomHorizontals.get(i).intValue()+q3.getX()), bottomMargin().intValue());
+            g2d.drawLine((int)(topHorizontals.get(i)+q2.getX()), topMargin().intValue(), (int)(bottomHorizontals.get(i)+q3.getX()), bottomMargin().intValue());
         }
         g2d.dispose();
     }
