@@ -1,0 +1,13 @@
+sample1.jpg
+
+    new Point2D.Double(837, 364),
+    new Point2D.Double(220, 362),
+    new Point2D.Double(18, 690),
+    new Point2D.Double(1046, 691)
+
+sample2.jpg
+
+    new Point2D.Double(829, 416),
+    new Point2D.Double(256, 412),
+    new Point2D.Double(78, 703),
+    new Point2D.Double(1025, 706)
