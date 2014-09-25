@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +24,7 @@ public class Main {
             );
             boardReader.calculateGrid();
             boardReader.drawGrid();
+            boardReader.fillBox(3, 3);
             displayImage(boardReader.getImage());
 
         } catch (IOException e) {

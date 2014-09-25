@@ -81,6 +81,14 @@ public class BoardReader {
         }
     }
 
+    public void fillBox(int x, int y) {
+        Graphics2D g2d = image.createGraphics();
+        g2d.setColor(Color.blue);
+
+        Box box = gridModel.getBox(x, y);
+        g2d.fillRect(box.x1, box.y1, box.width, box.height);
+    }
+
     private ArrayList<Double> calculateVerticals() {
         ArrayList<Double> result = new ArrayList();
         double averageGridDifference = ( bottomMargin() - topMargin())/9;
@@ -119,4 +127,6 @@ public class BoardReader {
     private Double bottomWidth() {
         return q4.getX() - q3.getX();
     }
+
+
 }
