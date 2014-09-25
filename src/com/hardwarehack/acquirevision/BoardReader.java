@@ -89,7 +89,7 @@ public class BoardReader {
         g2d.fillRect(box.x1, box.y1, box.width, box.height);
     }
 
-    public void getStatusOf(int x, int y) {
+    public int getStatusOf(int x, int y) {
         Graphics2D g2d = image.createGraphics();
         g2d.setColor(Color.red);
 
@@ -104,10 +104,19 @@ public class BoardReader {
         }
 
         Color averageColor = getAverageColor(colors);
-        System.out.println(colors.size());
+        int brightness = getBrightness(averageColor);
         System.out.println(averageColor);
+        System.out.println(brightness);
+        String occupiedStatus = brightness > 115 ? "occupied" : "empty";
+        System.out.println("The block at " + x + ", " + y + " is " + occupiedStatus);
+
+        return brightness;
     }
 
+    private int getBrightness(Color color) {
+        int brightness = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
+        return brightness;
+    }
     private Color getAverageColor(List<Color> colors) {
         int redBucket = 0;
         int greenBucket = 0;

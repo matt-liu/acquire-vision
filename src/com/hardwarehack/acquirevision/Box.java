@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Box {
-    private static final int RANDOM_POINTS = 30;
+    private static final int RANDOM_POINTS = 50;
     public int x1;
     public int x2;
     public int y1;
