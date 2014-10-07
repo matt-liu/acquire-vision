@@ -29,6 +29,7 @@ public class Main {
             );
             boardReader.diagnosticDrawHorizontalLines();
             boardReader.diagnosticDrawVerticalLines();
+            boardReader.diagnosticDrawPoints();
             displayImage(boardReader.getImage());
 
         } catch (IOException e) {
